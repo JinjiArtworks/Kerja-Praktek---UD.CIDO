@@ -1,0 +1,7 @@
+{
+  "name": "UDCIDO",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
