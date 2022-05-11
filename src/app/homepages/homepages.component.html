@@ -1,0 +1,42 @@
+<ion-content>
+
+  <!-- Toolbar -->
+  <ion-toolbar>
+    <ion-title class="ion-text-center" size="large">CIDO</ion-title>
+  </ion-toolbar>
+  <!-- SLIDERS BEGIN -->
+
+  <ion-col *ngIf=" kosong !=='empty'">
+    <ion-slides class=" ion-margin-top">
+      <ion-slide *ngFor="let pr of products; let i = index">
+        <ion-card class="sliders">
+          <ion-img src='{{ pr.image }}'></ion-img>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </ion-col>
+
+  <!-- END SLIDE -->
+
+  <div cards *ngIf="kosong !== 'empty'">
+    <h2>Kategori</h2>
+    <div class="grid-full">
+      <ion-row>
+        <ion-col *ngFor="let cat of categories; let i=index">
+          <ion-card>
+            <ion-img routerLink="/shop/{{ cat.idcategories }}" src='{{ cat.img }}'></ion-img>
+            <p>{{ cat.category_name }}</p>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+  <!-- PRODUK TERBARU -->
+
+  <ion-col *ngIf=" kosong==='empty'">
+    <h1 class=" nothing" style="text-align: center ">
+      Maaf produk tidak tersedia
+    </h1>
+  </ion-col>
+
+</ion-content>

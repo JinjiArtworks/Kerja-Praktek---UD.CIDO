@@ -1,3 +1,28 @@
-<ion-app>
-  <ion-router-outlet></ion-router-outlet>
-</ion-app>
+<!-- <ion-item>
+  <ion-searchbar></ion-searchbar>
+  <ion-tab-button tab="login">
+    <ion-icon name="notifications-outline"></ion-icon>
+  </ion-tab-button>
+  <ion-tab-button tab="login">
+    <ion-icon href="" style="margin-right: 10px;" name="bag-handle-outline"></ion-icon>
+  </ion-tab-button>
+</ion-item> -->
+
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="homepage">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="shop">
+      <ion-icon name="storefront-outline"></ion-icon>
+      <ion-label>Shop</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profile">
+      <ion-icon name="body-outline"></ion-icon>
+      <ion-label>Profile</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

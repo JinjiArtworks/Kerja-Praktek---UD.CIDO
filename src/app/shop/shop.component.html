@@ -1,0 +1,40 @@
+<ion-content>
+  <!-- Toolbar -->
+  <ion-toolbar>
+
+    <ion-title class="ion-text-center" size="large">CIDO</ion-title>
+  </ion-toolbar>
+  <ion-item>
+    <ion-searchbar [(ngModel)]="keyword" name="search" (keyup.enter)="searchProduct()"></ion-searchbar>
+    <ion-tab-button tab="notification">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button tab="cart">
+      <ion-icon href="" style="margin-right: 10px;" name="bag-handle-outline"></ion-icon>
+    </ion-tab-button>
+  </ion-item>
+
+  <ion-col *ngIf="kosong !== 'empty'">
+    <ion-card *ngFor="let pr of products; let i = index" class="box ">
+      <div class="gambar">
+        <ion-img src='{{ pr.image }}'></ion-img>
+      </div>
+      <div class="detail">
+        <h3>{{ pr.product_name }}</h3>
+        <p>{{ pr.product_description }}</p>
+        <strong>Rp. {{ pr.price }}</strong>
+        <div class="but">
+          <ion-button (click)="coPage()" size="small">Buy</ion-button>
+          <ion-button (click)="cartPage()" size="small">
+            <ion-icon slot="icon-only" name="bag-add-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </ion-card>
+  </ion-col>
+  <ion-col *ngIf="kosong === 'empty'">
+    <h1 class="nothing" style="text-align: center ">
+      Maaf produk tidak tersedia
+    </h1>
+  </ion-col>
+</ion-content>

@@ -1,0 +1,80 @@
+ion-title {
+    font-weight: 600;
+}
+h2{
+    margin-left:15px;
+}
+.sliders {
+    height: 160px;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 12px;
+    
+    img {
+        object-fit: cover;
+        width: 100%;
+        transform: scale(1.1, 1.1) rotate(1deg);
+        transition: 600ms all ease-in-out;
+    }
+}
+// ion-card{
+//     height: 160px;
+//     box-shadow: none;
+//     border-radius: 12px;
+// }
+
+.box{
+    height: 160px;
+    box-shadow: none;
+    border-radius: 12px;
+    
+}
+.swiper-slide-active {
+    transform: scale(1.05, 1.05);
+
+    .sliders {
+        img {
+            transform: scale(1, 1);
+        }
+    }
+}
+
+.swiper-slide {
+    transition: 400ms all ease-in-out;
+}
+
+.gambar {
+    width: 45%;
+    float: left;
+    
+}
+
+.detail {
+    width: 45%;
+    float: right;
+}
+
+.buy {
+    // position: fixed;
+    margin: 10px;
+    float: right;
+    bottom: 0;
+}
+strong{
+    font-size: 20px;
+}
+
+[cards] {
+    .grid-full ion-col {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 5px 0;
+    }
+    .row {
+        padding: 0;
+    }
+    .col {
+        padding: 5px 0;
+    }
+    
+}
