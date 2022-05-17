@@ -24,7 +24,7 @@
       <ion-row>
         <ion-col *ngFor="let cat of categories; let i=index">
           <ion-card>
-            <ion-img routerLink="/shop/{{ cat.idcategories }}" src='{{ cat.img }}'></ion-img>
+            <ion-img routerLink="/category/{{ cat.idcategories }}" src='{{ cat.img }}'></ion-img>
             <p>{{ cat.category_name }}</p>
           </ion-card>
         </ion-col>

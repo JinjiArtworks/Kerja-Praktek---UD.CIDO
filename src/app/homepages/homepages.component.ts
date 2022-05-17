@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 
+
 import { HomeService } from '../HomeService/home.service'
 @Component({
   selector: 'app-homepages',
@@ -65,6 +66,7 @@ export class HomepagesComponent implements OnInit {
   ngOnInit() {
     this.listProduct();
     this.listCategories();
+
     console.log(this.products);
   }
 

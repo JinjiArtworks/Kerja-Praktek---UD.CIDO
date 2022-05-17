@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { ActivatedRoute } from '@angular/router';
 import { ShopService } from '../shopService/shop.service';
 @Component({
   selector: 'app-shop',
@@ -9,10 +10,11 @@ import { ShopService } from '../shopService/shop.service';
 })
 export class ShopComponent implements OnInit {
 
-  constructor(public sh: ShopService,private route:Router) { }
+  constructor(public sh: ShopService,private route:ActivatedRoute) { }
   products = [];
   kosong = '';
   keyword = "";
+  idcategories: number = 0;
 
   listProduct() {
     this.sh.productList().subscribe((data) => {
@@ -38,12 +40,12 @@ export class ShopComponent implements OnInit {
       
     });
   }
-  coPage(){
-    this.route.navigate(['/checkout']);
-  }
-  cartPage(){
-    this.route.navigate(['/cart']);
-  }
+  // coPage(){
+  //   this.route.navigate(['/checkout']);
+  // }
+  // cartPage(){
+  //   this.route.navigate(['/cart']);
+  // }
   // SLIDERS
   option = {
     slidesPerView: 1.5,
@@ -54,9 +56,10 @@ export class ShopComponent implements OnInit {
   }
 
   // item = [];
-  ngOnInit() {
+  async ngOnInit() {
     this.listProduct();
-    console.log(this.products);
+
+    // console.log(this.products);
   }
 
 }
