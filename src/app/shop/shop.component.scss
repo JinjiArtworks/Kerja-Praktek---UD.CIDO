@@ -56,8 +56,13 @@ strong{
 }
 .but {
     // position: fixed;
-    margin: 10px;
     float: right;
+    bottom: 0;
+    // left: 0;
+}
+.price {
+    margin-left: auto;
+    float: left;
     bottom: 0;
     // left: 0;
 }

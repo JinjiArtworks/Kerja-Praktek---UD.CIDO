@@ -1,6 +1,34 @@
-<ion-toolbar>
-  <ion-buttons slot="start">
-    <ion-back-button defaultHref="shop"></ion-back-button>
-  </ion-buttons>
-  <ion-title class="ion-text-center" size="large">CIDO</ion-title>
-</ion-toolbar>
+<ion-content>
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="cart"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center" size="large">CIDO</ion-title>
+  </ion-toolbar>
+  <ion-col>
+    <ion-card>
+      <div class="gambar">
+        <img src="assets/icon/favicon.png" />
+      </div>
+      <div class="detail">
+        <p>asdasd</p>
+        <strong>12123123</strong>
+        <p>
+          10000
+        </p>
+      </div>
+    </ion-card>
+  </ion-col>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <p>Total Harga : </p>
+    <div class="but">
+      <ion-button routerLink="/checkout" size="small">
+        Bayar
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

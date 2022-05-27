@@ -1,7 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 
-$koneksi = new mysqli("localhost", "root", "", "cido");
+$koneksi = new mysqli("localhost", "root", "", "cido2");
 
 extract($_POST);
 $sql = "SELECT * FROM categories";

@@ -34,13 +34,11 @@ export class CategoryComponent implements OnInit {
         this.products = data;
         this.kosong = data[0];
       }
-      
     });
   }
   async ngOnInit() {
+    this.idcategories =  this.route.snapshot.params['idcategories'];
     this.listCategory();
-    this.idcategories = await this.st.get('idcategories');
-
     console.log(this.products);
   }
 

@@ -5,6 +5,6 @@ require("product.php"); //Akan menghentikan scripting saat library atau class ti
 $product = new Product("localhost", "root", "", "cido2");
 
 extract($_POST);
-$hasil = $product->getSomeProduct($idcategories);
+$hasil = $product->getOrderDetails($username);
 
 echo json_encode($hasil);

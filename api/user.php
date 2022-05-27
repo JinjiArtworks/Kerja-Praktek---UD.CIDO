@@ -10,19 +10,19 @@ class User extends Koneksi
     }
 
     //Method
-    public function createUser($username, $password, $phone, $alamat)
+    public function createUser($username, $password, $phone, $alamat, $role)
     {
-        if ($username == "" && $password == "" && $phone = "" && $alamat = "") {
+        if ($username == "" && $password == "" && $phone = "" && $alamat = "" && $role = "") {
             $arr = array("result" => "FAILED", "message" => "Cannot create new account.");
         } else {
-            $sql = "INSERT INTO user(username, password,alamat,nomor_hp) VALUES (?,?,?,?)";
+            $sql = "INSERT INTO user(username, password,phone,address,role) VALUES (?,?,?,?,?)";
             if ($stmt = $this->koneksi->prepare($sql)) {
-                $stmt->bind_param("ssss", $username, $password, $alamat, $phone);
+                $stmt->bind_param("sssss", $username, $password, $alamat, $phone, $role);
                 if ($stmt->execute()) {
                     // SHOW OK RESULT
                     $arr = array("result" => "OK", "message" => "Successfully create new account");
                 } else {
-                    $arr = array("result" => "FAILED", "message" => "Cannot create new account. \nEmail already exist");
+                    $arr = array("result" => "FAILED", "message" => "Cannot create new account. \nAccount already exist");
                 }
             } else {
                 $arr = array("result" => "FAILED", "message" => "Cannot create new account.");
@@ -49,5 +49,43 @@ class User extends Koneksi
         }
 
         return $arr;
+    }
+    public function getUser()
+    {
+        $sql = "SELECT * FROM user";
+        $result = $this->koneksi->query($sql);
+        $data = array();
+        $i = 0;
+        if ($result->num_rows > 0) {
+            while ($obj = $result->fetch_object()) {
+                $data[$i] = $obj;
+                $i++;
+            }
+        } else {
+            $data[] = "empty";
+        }
+        return $data;
+    }
+    public function getLogin($username, $password)
+    {
+        if ($username == "" && $password == "") {
+            $arr = array("result" => "FAILED", "message" => "Cannot Login.");
+        } else {
+            $sql = "SELECT * FROM user WHERE username = ? AND password = ?";
+            $result = $this->koneksi->query($sql);
+            $data = array();
+            $i = 0;
+            // echo $result;
+            // if ($result->num_rows > 0) {
+            while ($obj = $result->fetch_object()) {
+                $data[$i]['username'] = $obj['username'];
+                $i++;
+            }
+            // } else {
+            //     $data[] = "empty";
+            // }
+
+            return $result;
+        }
     }
 }

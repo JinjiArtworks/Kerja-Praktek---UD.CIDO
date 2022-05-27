@@ -10,18 +10,20 @@ import { HomeService } from '../HomeService/home.service'
   styleUrls: ['./homepages.component.scss'],
 })
 export class HomepagesComponent implements OnInit {
-  constructor(public hm: HomeService, private route: Router) { }
+  constructor(public hm: HomeService, private route: Router,private storage: Storage) { }
   products = [];
   categories = [];
   kosong = '';
+  username = '';
+  // public tes2: any = '';
 
   keyword = "";
-  listProduct() {
+  async listProduct() {
     this.hm.productList().subscribe((data) => {
       this.products = data;
     });
   }
-  listCategories() {
+  async listCategories() {
     this.hm.kategoriList().subscribe((data) => {
       this.categories = data;
     });
@@ -63,11 +65,14 @@ export class HomepagesComponent implements OnInit {
   }
 
   // item = [];
-  ngOnInit() {
+  async ngOnInit() {
+    await this.storage.create();
+    this.username = await this.storage.get('username')
     this.listProduct();
     this.listCategories();
+    console.log(this.username);
 
-    console.log(this.products);
+    // console.log(this.products);
   }
 
 }

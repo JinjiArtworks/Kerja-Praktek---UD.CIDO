@@ -9,12 +9,12 @@
 <ion-content>
   <form>
     <ion-item lines="full">
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-label position="floating">Username</ion-label>
+      <ion-input [(ngModel)]="login_user" name="username" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" required></ion-input>
+      <ion-input [(ngModel)]="login_password" name="password" type="password" required></ion-input>
     </ion-item>
     <ion-row>
       <ion-col>

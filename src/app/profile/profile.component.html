@@ -12,7 +12,8 @@
       <ion-label>
         <ion-text>Username</ion-text>
         <p>
-          <ion-text color="dark">Gigih</ion-text>
+          <ion-input color="dark" value="{{ username }}" [(ngModel)]="username" disabled="{{ disabledz }}">
+          </ion-input>
         </p>
       </ion-label>
     </ion-item>
@@ -20,7 +21,8 @@
       <ion-label>
         <ion-text>Address</ion-text>
         <p>
-          <ion-text color="dark">Jalan Barito 5 no 15</ion-text>
+          <ion-input color="dark" value="{{ address }}" [(ngModel)]="address" disabled="{{ disabledz }}">
+          </ion-input>
         </p>
       </ion-label>
     </ion-item>
@@ -28,7 +30,8 @@
       <ion-label>
         <ion-text>Phone</ion-text>
         <p>
-          <ion-text color="dark">0821480329</ion-text>
+          <ion-input color="dark" value="{{ phone }}" [(ngModel)]="address" disabled="{{ disabledz }}">
+          </ion-input>
         </p>
       </ion-label>
     </ion-item>

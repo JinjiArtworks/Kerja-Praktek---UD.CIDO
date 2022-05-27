@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { UserService } from '../user.service';
+import { NavController } from '@ionic/angular';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,25 +10,36 @@ import { UserService } from '../user.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private storage: Storage, public us: UserService) {}
+  constructor(private storage: Storage, public us: UserService, public navCtrl: NavController) { }
   userid = '';
-  login_user = '';
-  login_password = ''; // sesuaikan dengan ngModel yg ada di app.component.html
+  login_user: string = '';
+  login_password: string = '';
   login_error = '';
+  address: string = '';
+  phone: string = '';
   users = [];
 
   // using database
   loginUser() {
+    // console.log(this.lasdogin_user);
+    // console.log(this.login_password);
     this.us.loginDB(this.login_user, this.login_password).subscribe((data) => {
       this.users = data;
-      this.userid = this.users[0]['id'];
-      console.log(this.users[0]['userid']);
-      this.storage.set('id', this.userid);
+      if (data.result == "OK") {
+        this.userid = this.login_user;
+        this.storage.set('username', this.login_user);
+        // this.storage.set('username_user', data["data"][0].username);
+      } else {
+        this.login_error = "username or password is Wrong!!";
+      }
     });
+    // this.navCtrl.navigateRoot('/homepage');
   }
   async ngOnInit() {
     await this.storage.create();
-    this.userid = await this.storage.get('id')
+    this.userid = await this.storage.get('username')
+    console.log(this.userid);
+
   }
 
 }

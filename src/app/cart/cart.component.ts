@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CartService } from '../cartService/cart.service';
-
+import { ActivatedRoute } from '@angular/router';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-cart',
@@ -8,12 +9,20 @@ import { CartService } from '../cartService/cart.service';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  
+  idproducts = 0;
+  username: string = '';
   products = [];
 
-  constructor(private cs: CartService) {}
- 
-  ngOnInit() {
+  constructor(private cs: CartService,private route:ActivatedRoute, public st: Storage) {}
+  listCart() {
+    this.cs.cartList(this.username).subscribe((data) => {
+      this.products = data;
+    });
+  }
+  async ngOnInit() {
+    this.username = await this.st.get('username')
+    this.idproducts =  this.route.snapshot.params['idproducts'];
+    this.listCart();
   }
 }
 

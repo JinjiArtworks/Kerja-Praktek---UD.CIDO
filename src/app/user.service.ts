@@ -12,8 +12,8 @@ export class UserService {
   loginDB(username: string, password: string): Observable<any> {
     let body = new HttpParams();
     body = body.set('username', username);
-    body = body.set('pwd', password);
-    return this.http.post('http://localhost:8100/kp/cido/api/login.php', body);
+    body = body.set('password', password);
+    return this.http.post('http://localhost/UDCIDO/api/login2.php', body);
   }
   regisDB(username: string, password: string, phone: string, alamat: string): Observable<any> {
     let body = new HttpParams();
@@ -23,10 +23,4 @@ export class UserService {
     body = body.set('phone', phone);
     return this.http.post('http://localhost/UDCIDO/api/register.php', body);
   }
-  // searchProduct(keyword: string): Observable<any> {
-  //   let body = new HttpParams();
-  //   body = body.set('keyword', keyword);
-  //   return this.http.post('http://localhost/UDCIDO/api/get_search.php', body);
-  //   // return this.http.get('https://ubaya.fun/hmp/week12/product.php');
-  // }
 }

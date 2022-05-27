@@ -7,17 +7,24 @@
     <ion-title class="ion-text-center" size="large">CIDO</ion-title>
   </ion-toolbar>
   <ion-col>
-    <ion-card>
+    <ion-card *ngFor="let pr of products; let i = index">
       <div class="gambar">
-        <img src="assets/icon/favicon.png" />
+        <ion-img src='{{ pr.image }}'></ion-img>
       </div>
       <div class="detail">
-        <p>asdasd</p>
-        <strong>12123123</strong>
-        <!-- <h3>{{ pr.product_name }}</h3>
+        <h3>{{ pr.product_name }}</h3>
         <p>{{ pr.product_description }}</p>
-        <strong>Rp. {{ pr.price }}</strong> -->
+        <strong>Rp. {{ pr.price }}</strong>
       </div>
     </ion-card>
   </ion-col>
 </ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <div class="but">
+      <ion-button routerLink="/checkout" size="small">
+        Check out
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CheckoutService } from '../checkoutService/checkout.service';
 
 
 @Component({
@@ -8,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor( ) { }
-
+  constructor( public co: CheckoutService) { }
+  products = [];
+  listCheckout() {
+    this.co.checkoutList().subscribe((data) => {
+      this.products = data;
+    });
+  }
   ngOnInit() {}
 
 }

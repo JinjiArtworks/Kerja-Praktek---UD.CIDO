@@ -1,0 +1,21 @@
+.box{
+    height: 160px;
+    box-shadow: none;
+    border-radius: 12px;
+    
+  }
+  .gambar {
+    width: 45%;
+    float: left;
+  }
+  
+  .detail {
+    width: 45%;
+    float: right;
+  }
+  .but {
+      // position: fixed;
+      float: right;
+      bottom: 0;
+      // left: 0;
+  }

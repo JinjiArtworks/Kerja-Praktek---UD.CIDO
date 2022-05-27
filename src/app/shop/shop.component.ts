@@ -40,20 +40,7 @@ export class ShopComponent implements OnInit {
       
     });
   }
-  // coPage(){
-  //   this.route.navigate(['/checkout']);
-  // }
-  // cartPage(){
-  //   this.route.navigate(['/cart']);
-  // }
-  // SLIDERS
-  option = {
-    slidesPerView: 1.5,
-    centeredSlides: true,
-    loop: true,
-    spaceBetween: 10,
-    // autoplay:true,
-  }
+
 
   // item = [];
   async ngOnInit() {
