@@ -18,15 +18,14 @@ export class ProfileComponent implements OnInit {
 
   listUser() {
     this.ps.userList(this.username).subscribe((data) => {
-      this.users = data;
-      this.address = data["data"][0].address;
-      console.log(this.users);
-    });
+     this.users = data;
+    })
   }
   async ngOnInit() {
     this.username = await this.st.get('username');
-    this.address = await this.st.get('address');
-    // this.listUser();
+    // s.phone = await this.st.get('phone');
+    console.log(this.username);
+    console.log(this.address);
+    console.log(this.phone);
   }
-
 }

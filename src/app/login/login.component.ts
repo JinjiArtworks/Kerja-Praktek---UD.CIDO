@@ -21,24 +21,19 @@ export class LoginComponent implements OnInit {
 
   // using database
   loginUser() {
-    // console.log(this.lasdogin_user);
-    // console.log(this.login_password);
     this.us.loginDB(this.login_user, this.login_password).subscribe((data) => {
-      this.users = data;
       if (data.result == "OK") {
         this.userid = this.login_user;
         this.storage.set('username', this.login_user);
-        // this.storage.set('username_user', data["data"][0].username);
       } else {
         this.login_error = "username or password is Wrong!!";
       }
     });
-    // this.navCtrl.navigateRoot('/homepage');
+    this.navCtrl.navigateRoot('/homepage');
   }
   async ngOnInit() {
     await this.storage.create();
-    this.userid = await this.storage.get('username')
-    console.log(this.userid);
+    this.userid = await this.storage.get('username');
 
   }
 

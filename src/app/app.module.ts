@@ -25,7 +25,7 @@ const appRoutes: Routes = [
   { path: 'shop', component: ShopComponent },
   { path: 'category/:idcategories', component: CategoryComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'cart/:idproducts', component: CartComponent },
+  { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
 ]; // konstanta untuk menyimpan semua path yang ada didalam web ini
 @NgModule({

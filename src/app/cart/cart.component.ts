@@ -19,9 +19,10 @@ export class CartComponent implements OnInit {
       this.products = data;
     });
   }
+
+  
   async ngOnInit() {
     this.username = await this.st.get('username')
-    this.idproducts =  this.route.snapshot.params['idproducts'];
     this.listCart();
   }
 }
