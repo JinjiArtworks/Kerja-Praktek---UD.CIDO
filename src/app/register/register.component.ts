@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { NavController } from '@ionic/angular';
 import { UserService } from '../user.service';
 
 @Component({
@@ -13,22 +14,21 @@ export class RegisterComponent implements OnInit {
   password = '';
   address = '';
   number = '';
-  constructor(public us: UserService) { }
+  isRegister = false;
+  constructor(public us: UserService, public navCtrl: NavController) { }
 
   ngOnInit() {}
 
   registerUser(){
     this.us.regisDB(this.username, this.password, this.number, this.address).subscribe((data) => {
-      alert(data['message'])
+      if  (data.result == "OK"){
+        alert("Welcome... Enjoy your Shopping In CIDO :) \nPlease Re-Login");
+        this.navCtrl.navigateRoot('/login');
+        this.isRegister = false;
+      } else {
+        alert(data['message']);
+      }
     });
-    // console.log(this.username);
-    // console.log(this.password);
-    // console.log(this.address);
-    // console.log(this.number);
-    this.username = '';
-  this.password = '';
-  this.address = '';
-  this.number = '';
   }
 
 }

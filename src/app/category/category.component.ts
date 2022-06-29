@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 import { CategoryService } from '../categoryService/category.service';
+import { CartService } from '../cartService/cart.service';
+import { Product } from '../product.model';
 
 @Component({
   selector: 'app-category',
@@ -23,6 +25,8 @@ export class CategoryComponent implements OnInit {
       console.log(data);
     });
   }
+  // api untuk masukin keranjang mana yo ? @fitri
+  
   searchProduct() {
     this.cs.searchProduct(this.keyword).subscribe((data) => {
       // console.log(data[0]);
@@ -37,6 +41,7 @@ export class CategoryComponent implements OnInit {
     });
   }
   async ngOnInit() {
+    await this.st.create();
     this.idcategories =  this.route.snapshot.params['idcategories'];
     this.listCategory();
     console.log(this.products);

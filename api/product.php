@@ -24,32 +24,55 @@ class Product extends Koneksi
     } else {
       $data[] = "empty";
     }
-
     return $data;
   }
 
-  public function insertOrder($no_order, $order_date, $is_delivered, $username)
+  public function insertOrder($no_order, $order_date, $username, $idproducts, $product_quantity, $product_price)
   {
-    $sql = "INSERT INTO orders(no_order, order_date, is_delivered, username) VALUES(?,?,?,?)";
+    $data = array();
+    $idorders = 0;
+    $arr = array();
+    $sql = "INSERT INTO orders(no_order, order_date, username) VALUES(?,?,?)";
     if ($stmt = $this->koneksi->prepare($sql)) {
-      $stmt->bind_param("isisi", $no_order, $order_date, $is_delivered, $username);
+      $stmt->bind_param("iss", $no_order,  $order_date, $username);
       if ($stmt->execute()) {
-        // SHOW OK RESULT
-        $arr = array("result" => "OK", "message" => "Successfully add order");
+        // get id order
+        $sql2 = "SELECT idorder FROM orders ORDER BY idorder DESC LIMIT 1";
+        $result2 = $this->koneksi->query($sql2);
+        if ($result2->num_rows > 0) {
+          $data[] = $result2->fetch_assoc();
+          $idorders = $data[0]["idorder"];
+        }
+        // insert ke order details
+        $sql3 = "INSERT INTO order_details(idproducts, idorders, product_quantity, product_price, subtotal) VALUES(?,?,?,?,?,?)";
+        $stmt2 = $this->koneksi->prepare($sql3);
+        // echo $idorders;
+        $subtotal = ROUND($product_price * $product_quantity);
+        $stmt2->bind_param("iiidd", $idproducts, $idorders, $product_quantity, $product_price, $subtotal);
+        if ($stmt2->execute()) {
+
+          $sql4 = "UPDATE products p INNER JOIN order_details od on p.idproducts = od.idproducts SET p.stock = p.stock - od.product_quantity WHERE p.idproducts = ?";
+          if ($stmt3 = $this->koneksi->prepare(($sql4))) {
+            $stmt3->bind_param("i", $idproducts);
+            $arr = array("result" => "OK", "message" => "Successfully add order");
+          }
+        } else {
+          $arr = array("result" => "FAILED", "message" => "Cannot update stok.");
+        }
       } else {
-        $arr = array("result" => "FAILED", "message" => "Cannot add order.");
+        $arr = array("result" => "FAILED", "message" => "Cannot add order 2.");
       }
     } else {
-      $arr = array("result" => "FAILED", "message" => "Cannot add order.");
+      $arr = array("result" => "FAILED", "message" => "Cannot add order, Your Connection");
     }
     return $arr;
   }
 
-  public function insertOrderDetails($order_idorder, $idcategories, $idproducts, $product_quantity, $product_price)
+  public function insertOrderDetails($idorders, $idcategories, $idproducts, $product_quantity, $product_price)
   {
-    $sql = "INSERT INTO order_details(order_idorder, idcategories, idproducts, product_quantity, product_price, subtotal) VALUES(?,?,?,?,?, ROUND(product_quantity*product_price))";
+    $sql = "INSERT INTO order_details(idorders, idcategories, idproducts, product_quantity, product_price, subtotal) VALUES(?,?,?,?,?, ROUND(product_quantity*product_price))";
     if ($stmt = $this->koneksi->prepare($sql)) {
-      $stmt->bind_param("iiiid", $order_idorder, $idcategories, $idproducts, $product_quantity, $product_price);
+      $stmt->bind_param("iiiid", $idorders, $idcategories, $idproducts, $product_quantity, $product_price);
       if ($stmt->execute()) {
         // SHOW OK RESULT
         $sql2 = "UPDATE products p INNER JOIN order_details od on p.idproducts = od.idproducts SET p.stock = p.stock - od.product_quantity WHERE p.idproducts = ?";
@@ -68,9 +91,9 @@ class Product extends Koneksi
 
   public function getOrderDetails($username)
   {
-    $sql = "SELECT p.product_name, p.image, p.price, p.product_description
-    FROM orders o INNER JOIN order_details od ON o.idorder = od.order_idorder
-    LEFT JOIN products p ON od.idproducts = p.idproducts
+    $sql = "SELECT * 
+    FROM `orders` o 
+    LEFT JOIN products p ON o.idorder = p.idproducts
     WHERE o.username = ?";
     $stmt = $this->koneksi->prepare($sql);
     $stmt->bind_param("s", $username);
@@ -106,6 +129,26 @@ class Product extends Koneksi
     }
     return $arr;
   }
+
+  public function getOneProduct($idproducts)
+  {
+    $sql = "SELECT * FROM products where idproducts = ?";
+    $stmt = $this->koneksi->prepare($sql);
+    $stmt->bind_param("i", $idproducts);
+    $stmt->execute();
+    $arr = array();
+    $i = 0;
+    if ($hasil = $stmt->get_result()) {
+      while ($obj = $hasil->fetch_object()) {
+        $arr[$i] = $obj;
+        $i++;
+      }
+    } else {
+      $arr[0] = 'No Product';
+    }
+    return $arr;
+  }
+
 
   public function getSearch($keyword)
   {

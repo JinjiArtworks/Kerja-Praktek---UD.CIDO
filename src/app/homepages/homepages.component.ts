@@ -16,6 +16,7 @@ export class HomepagesComponent implements OnInit {
   kosong = '';
   username = '';
   // public tes2: any = '';
+  
 
   keyword = "";
   async listProduct() {

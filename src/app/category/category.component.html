@@ -14,7 +14,30 @@
   </ion-item>
 
   <ion-col *ngIf="kosong !== 'empty'">
-    <ion-card *ngFor="let pr of products; let i = index" class="box ">
+    <div class="container">
+      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div class="col mb-5" *ngFor="let pr of products; let i=index">
+          <div class="card h-100">
+            <!-- Product image-->
+            <img src='{{ pr.image }}'>
+
+            <div class="card-body text-center" style="color: black; ">
+              <h3>{{ pr.product_name }}</h3>
+            </div>
+            <!-- Product actions-->
+            <div class="card-footer text-center p-4 pt-0 border-top-0 bg-transparent">
+              <div class="text-center">
+                <ion-button href="/shopdetail/{{ pr.idproducts }}"> Details
+                </ion-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-col>
+
+  <!-- <ion-card *ngFor="let pr of products; let i = index" class="box ">
       <div class="gambar">
         <ion-img src='{{ pr.image }}'></ion-img>
       </div>
@@ -22,17 +45,18 @@
         <h3>{{ pr.product_name }}</h3>
         <p>{{ pr.product_description }}</p>
         <strong>Rp. {{ pr.price }}</strong>
-        <div class="but">
+        <div class=" d-flex align-items-end justify-content-end m-2">
           <ion-button routerLink="/cart/{{ pr.idproducts }}" size="small">
-            + Keranjang
+            Masukan Keranjang
           </ion-button>
+          <a class="btn btn-primary  mt-auto" href="/cart/{{ pr.idproducts }}">Masukkan Ke</a>
         </div>
       </div>
-    </ion-card>
-  </ion-col>
+    </ion-card> -->
   <ion-col *ngIf="kosong === 'empty'">
     <h1 class="nothing" style="text-align: center ">
       Maaf produk tidak tersedia
     </h1>
   </ion-col>
+
 </ion-content>

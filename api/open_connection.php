@@ -20,4 +20,3 @@
             $this->koneksi->close();
         }
     }
-?>

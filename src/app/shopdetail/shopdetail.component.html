@@ -1,0 +1,72 @@
+<ion-content>
+  <!-- Toolbar -->
+  <ion-toolbar>
+    <ion-title class="ion-text-center" size="large">CIDO</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="homepage"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-item>
+    <ion-searchbar [(ngModel)]="keyword" name="search" (keyup.enter)="searchProduct()"></ion-searchbar>
+    <ion-tab-button tab="cart">
+      <ion-icon href="" style="margin-right: 10px;" name="bag-handle-outline"></ion-icon>
+    </ion-tab-button>
+  </ion-item>
+
+  <ion-col *ngIf="kosong !== 'empty'">
+    <div class="container">
+      <div class="row gx-12 gx-lg-12 row-cols-12 row-cols-md-12 row-cols-xl-12 justify-content-center">
+        <div class="col mb-5" *ngFor="let pr of products; let i=index">
+          <div class="card h-100">
+            <!-- Product image-->
+            <img src='{{ pr.image }}'>
+
+            <div class="card-body text-center" style="color: black; ">
+              <h3>{{ pr.product_name }}</h3>
+              <p>{{ pr.product_description }}</p>
+              <strong>Rp. {{ pr.price }}</strong>
+            </div>
+            <!-- Product actions-->
+            <div class="card-footer text-center p-4 pt-0 border-top-0 bg-transparent">
+              <ion-button class="counter-icon">
+                <ion-icon name="remove" slot="icon-only" role="img" aria-label="remove"></ion-icon>
+              </ion-button>
+              <span> 1 </span>
+              <ion-button class="counter-icon">
+                <ion-icon name="add" slot="icon-only" role="img" aria-label="add"></ion-icon>
+              </ion-button>
+              <div class="text-left">
+                <ion-button (click)="addToCart(pr)">
+                  CONFIRM
+                </ion-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-col>
+
+  <!-- <ion-card *ngFor=" let pr of products; let i=index" class="box ">
+                  <div class="gambar">
+                    <ion-img src='{{ pr.image }}'></ion-img>
+                  </div>
+                  <div class="detail">
+                    <h3>{{ pr.product_name }}</h3>
+                    <p>{{ pr.product_description }}</p>
+                    <strong>Rp. {{ pr.price }}</strong>
+                    <div class=" d-flex align-items-end justify-content-end m-2">
+                      <ion-button routerLink="/cart/{{ pr.idproducts }}" size="small">
+                        Masukan Keranjang
+                      </ion-button>
+                      <a class="btn btn-primary  mt-auto" href="/cart/{{ pr.idproducts }}">Masukkan Ke</a>
+                    </div>
+                  </div>
+                  </ion-card> -->
+  <ion-col *ngIf="kosong === 'empty'">
+    <h1 class="nothing" style="text-align: center ">
+      Maaf produk tidak tersedia
+    </h1>
+  </ion-col>
+
+</ion-content>

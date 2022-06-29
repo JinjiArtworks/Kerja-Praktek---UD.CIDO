@@ -15,11 +15,11 @@ export class UserService {
     body = body.set('password', password);
     return this.http.post('http://localhost/UDCIDO/api/login.php', body);
   }
-  regisDB(username: string, password: string, phone: string, alamat: string): Observable<any> {
+  regisDB(username: string, password: string, phone: string, address: string): Observable<any> {
     let body = new HttpParams();
     body = body.set('username', username);
     body = body.set('password', password);
-    body = body.set('alamat', alamat);
+    body = body.set('address', address);
     body = body.set('phone', phone);
     return this.http.post('http://localhost/UDCIDO/api/register.php', body);
   }

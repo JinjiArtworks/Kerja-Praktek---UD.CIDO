@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../profileService/profile.service';
 import { Storage } from '@ionic/storage-angular';
-
+import { ShopService } from '../shopService/shop.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -12,20 +12,45 @@ export class ProfileComponent implements OnInit {
   address:string = "";
   phone:string = "";
   disabledz:boolean = true;
-  
-  constructor(public ps: ProfileService,  public st:Storage) { }
   users = [];
+  constructor(public ps: ProfileService,  public st:Storage) { }
+  
 
-  listUser() {
-    this.ps.userList(this.username).subscribe((data) => {
-     this.users = data;
-    })
+  async listUser() {
+    this.username = await this.st.get('username');   
+    await this.ps.userList(this.username).subscribe((data) => {
+    // this.users = data;'
+    
+
+    // console.log(data);
+    this.users = data;
+    // console.log(this.users);
+    this.address = data['address'];
+    this.phone = data['phone'];
+
+  });
+  // console.log(this.users);
   }
+
+//   searchProduct() {
+//     this.sh.searchProduct(this.keyword).subscribe((data) => {
+//       // console.log(data[0]);
+//       if(data[0] == "empty")
+//       {
+//         this.kosong = data[0];
+//       }
+//       else if(data[0] != "empty"){
+//         this.products = data;
+//         this.kosong = data[0];
+//       }
+// });
+//   }
+
+
   async ngOnInit() {
-    this.username = await this.st.get('username');
-    // s.phone = await this.st.get('phone');
-    console.log(this.username);
-    console.log(this.address);
-    console.log(this.phone);
+    
+    this.username = await this.st.get('username');   
+    await this.listUser();
+    
   }
 }
