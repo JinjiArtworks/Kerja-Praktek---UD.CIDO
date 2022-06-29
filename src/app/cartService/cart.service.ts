@@ -8,20 +8,45 @@ import { Product } from '../product.model';
   providedIn: 'root'
 })
 export class CartService {
+    cartListItems = [];
+  // cartItems = [];
+  // items: Product[] = [];
+  // addToCart(product: Product) {
+  //   this.items.push(product);
+  // }
+  // getItems() {
+  //   return this.items;
+  // }
 
-  cartItems = [];
+  // clearCart() {
+  //   this.items = [];
+  //   return this.items;
+  // }
 
-  addItem(product:Product) {
-    const exists = this.cartItems.find(item => {
-      return item.id === product.idproduct;
-    });
+  // itemsCount(){
+  //   return this.items.length;
+  // }
+  // addItem(product:Product) {
+  //   const exists = this.cartItems.find(item => {
+  //     return item.id === product.idproduct;
+  //   });
 
-    if(exists)
-      exists.quantity
-    else
-      this.cartItems.push(product);
+  //   if(exists)
+  //     exists.quantity
+  //   else
+  //     this.cartItems.push(product);
       
-      console.log(this.cartItems)
+  //     console.log(this.items)
+  // }
+
+  addProductToCart(product:Product) {
+    const productExistInCart = this.cartListItems.find(({name}) => name === product.namaProduk); // find product by name
+    if (!productExistInCart) {
+      this.cartListItems.push({name: product.namaProduk, num:1}); 
+      // enhance "porduct" opject with "num" property
+      return;
+    }
+    productExistInCart.num += 1;
   }
   
   constructor(private http: HttpClient) { }

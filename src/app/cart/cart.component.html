@@ -1,5 +1,4 @@
-<ion-content>
-  <!-- Toolbar -->
+<!-- <ion-content>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="shop"></ion-back-button>
@@ -29,4 +28,51 @@
       </ion-button>
     </div>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->
+<ion-content>
+  <div>
+    <div class="table-responsive">
+      <table class=" table table-bordered table-hover">
+        <thead class='thead'>
+          <tr>
+            <th>S.No</th>
+            <th>Image</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quatity</th>
+            <th>Total Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pr of products;let i = index">
+            <td>{{i+1}}</td>
+            <td>
+              <img class="img-thumbnail .img-responsive" src="{{pr.image}}" style="height:80px;width:80px;" />
+            </td>
+            <td>{{pr.idproduct}}</td>
+            <td>{{pr.product_description}}</td>
+            <td>{{pr.product_price}}</td>
+            <td>{{pr.product_quanity}}</td>
+            <td>{{pr.product_price * pr.product_quanity}}</td>
+            <td>
+              <button class="btn btn-danger" (click)="deleteProduct(pr.product_id)">
+                Remove Item From Cart
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3"></td>
+            <td>Price {{price}}</td>
+            <td>Qty {{totalQuantity}}</td>
+            <td colspan="2">Sum {{totalPrice | currency: 'INR' }}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+</ion-content>

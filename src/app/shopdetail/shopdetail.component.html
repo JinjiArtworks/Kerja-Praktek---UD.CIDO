@@ -7,7 +7,6 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-item>
-    <ion-searchbar [(ngModel)]="keyword" name="search" (keyup.enter)="searchProduct()"></ion-searchbar>
     <ion-tab-button tab="cart">
       <ion-icon href="" style="margin-right: 10px;" name="bag-handle-outline"></ion-icon>
     </ion-tab-button>
@@ -36,7 +35,8 @@
                 <ion-icon name="add" slot="icon-only" role="img" aria-label="add"></ion-icon>
               </ion-button>
               <div class="text-left">
-                <ion-button (click)="addToCart(pr)">
+                <!-- href="/cart"  -->
+                <ion-button href="cart" (click)="addToCart(pr)">
                   CONFIRM
                 </ion-button>
               </div>

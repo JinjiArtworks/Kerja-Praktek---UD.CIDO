@@ -24,9 +24,11 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'homepage', component: HomepagesComponent },
   { path: 'shop', component: ShopComponent },
+  { path: 'category', component: CategoryComponent },
   { path: 'category/:idcategories', component: CategoryComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'cart/:idproducts', component: CartComponent },
+  { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'shopdetail/:idproducts', component: ShopdetailComponent },
 

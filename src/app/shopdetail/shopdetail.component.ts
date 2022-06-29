@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
@@ -13,7 +13,6 @@ import { Product } from '../product.model';
   styleUrls: ['./shopdetail.component.scss'],
 })
 export class ShopdetailComponent implements OnInit {
-
   constructor(public cs: CategoryService, public ss: ShopService, private route:ActivatedRoute, public st: Storage, public cart:CartService) { }
   idproducts = 0;
   products = [];
@@ -26,22 +25,11 @@ export class ShopdetailComponent implements OnInit {
       this.products = data;
     });
   }
+  
   addToCart(item:Product){
-    this.cart.addItem(item);
-  }
-  // api untuk masukin keranjang mana yo ? @fitri
-  searchProduct() {
-    this.cs.searchProduct(this.keyword).subscribe((data) => {
-      // console.log(data[0]);
-      if(data[0] == "empty")
-      {
-        this.kosong = data[0];
-      }
-      else if(data[0] != "empty"){
-        this.products = data;
-        this.kosong = data[0];
-      }
-    });
+    // this.cart.addItem(item);
+    // this.cart.addToCart(item);
+    window.alert('Your product has been added to the cart!');
   }
   async ngOnInit() {
     this.idproducts =  this.route.snapshot.params['idproducts'];
@@ -52,7 +40,7 @@ export class ShopdetailComponent implements OnInit {
     // this.st.
     this.detailProduct();
     // // // this.DataArray = [[this.idproducts, '2'],['3', '4']]
-    // console.log(this.products);
+    console.log(this.products);
     // // console.log(this.DataArray[0][0]);
 
   }
