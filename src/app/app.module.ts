@@ -17,6 +17,7 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CategoryComponent } from './category/category.component';
 import { ShopdetailComponent } from './shopdetail/shopdetail.component';
+import { ShopModalPageModule } from './pages/shop-modal/shop-modal.module';
 // service dimasukan ke provider , gunanya service ?
 
 const appRoutes: Routes = [
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
     IonicModule.forRoot(),
     AppRoutingModule,
     FormsModule,
+    ShopModalPageModule,
     RouterModule.forRoot(appRoutes),
   ], //librari routes ditambah disini
 

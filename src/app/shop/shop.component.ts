@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { ActivatedRoute } from '@angular/router';
 import { ShopService } from '../shopService/shop.service';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
+import { BehaviorSubject } from 'rxjs';
+import { ShopModalPage } from '../pages/shop-modal/shop-modal.page';
 
 @Component({
   selector: 'app-shop',
@@ -12,8 +14,11 @@ import { NavController } from '@ionic/angular';
 })
 export class ShopComponent implements OnInit {
 
-  constructor(public sh: ShopService,public navCtrl: NavController, public st:Storage) { }
+  constructor(public sh: ShopService,public navCtrl: NavController, public st:Storage,private modalCtrl: ModalController) { }
   products = [];
+  cart = [];
+  cartItemCount: BehaviorSubject<number>;
+
   kosong = '';
   keyword = "";
   username = "";
@@ -24,22 +29,14 @@ export class ShopComponent implements OnInit {
 
   listProduct() {
     this.sh.productList().subscribe((data) => {
-      console.log(data);
       this.products = data;
     });
   }
 
   productConfirm() {
     this.st.set("price", this.products["price"]);
-      
     this.navCtrl.navigateRoot('/cart');
   }
-  // increaseCartItem(product) {
-  //   this.sh.addProduct(product);
-  // }
-  // decreaseCartItem(product) {
-  //   this.sh.decreaseProduct(product);
-  // }
 
   searchProduct() {
     this.sh.searchProduct(this.keyword).subscribe((data) => {
@@ -56,11 +53,31 @@ export class ShopComponent implements OnInit {
 });
   }
   async ngOnInit() {
+
     this.st.create();
     this.username = await this.st.get('username');   
     this.listProduct();
-    console.log(this.products);
-    // console.log(this.products);
+
+    // this.products = this.sh.getProducts();
+    this.cart = this.sh.getCart();
+    this.cartItemCount = this.sh.getCartItemCount();
+  }
+  addToCart(product) {
+    this.sh.addProduct(product);
+    // this.animateCSS('tada');
+  }
+ 
+  async openCart() {
+    // this.animateCSS('bounceOutLeft', true);
+    let modal = await this.modalCtrl.create({
+      component: ShopModalPage,
+      cssClass: 'shop-modal'
+    });
+    // modal.onWillDismiss().then(() => {
+    //   this.fab.nativeElement.classList.remove('animated', 'bounceOutLeft')
+    //   this.animateCSS('bounceInLeft');
+    // });
+    modal.present();
   }
 
 }

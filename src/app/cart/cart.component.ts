@@ -63,31 +63,31 @@ export class CartComponent implements OnInit {
     }
   }
   async ngOnInit() {
-    console.log(this.idproducts);
-    await this.st.create();
+    
+    // await this.st.create();
     this.username = await this.st.get('username');
     this.idkategori = await this.st.get('idkategori');
     this.price = await this.st.get('price');
     this.idproducts = await this.st.get('idproduct');
     
-
+    console.log(this.idproducts);
     // this.listCart();
 
 
 
-    this.ps.event.subscribe(product => {
-      alert("cart-list-ngOnInit");
-      let index = -1;
-      index = this.cartProducts.findIndex(
-        p => p.idproduct === product.idproduct
-      );
-      if (index != -1) {
-        this.cartProducts[index].quantity += 1;
-      } else if (index === -1) {
-        this.cartProducts.push(product);
-      }
-      this.sum();
-    });
+  //   this.ps.event.subscribe(product => {
+  //     alert("cart-list-ngOnInit");
+  //     let index = -1;
+  //     index = this.cartProducts.findIndex(
+  //       p => p.idproduct === product.idproduct
+  //     );
+  //     if (index != -1) {
+  //       this.cartProducts[index].quantity += 1;
+  //     } else if (index === -1) {
+  //       this.cartProducts.push(product);
+  //     }
+  //     this.sum();
+  //   });
   }
 }
 

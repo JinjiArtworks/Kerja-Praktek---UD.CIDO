@@ -43,8 +43,6 @@ export class CartService {
     const productExistInCart = this.cartListItems.find(({name}) => name === product.namaProduk); // find product by name
     if (!productExistInCart) {
       this.cartListItems.push({name: product.namaProduk, num:1}); 
-      // enhance "porduct" opject with "num" property
-      return;
     }
     productExistInCart.num += 1;
   }

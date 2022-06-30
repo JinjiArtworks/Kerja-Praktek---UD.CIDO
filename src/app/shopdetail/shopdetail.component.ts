@@ -23,6 +23,10 @@ export class ShopdetailComponent implements OnInit {
   detailProduct() {
     this.ss.shopdetail(this.idproducts).subscribe((data) => {
       this.products = data;
+      console.log(this.products);
+      this.st.set("price", this.products["price"]);
+      this.st.set("idProduct", this.products["idproducts"]);
+      this.st.set("idkategori", this.products["idcategories"]);
     });
   }
   
@@ -32,15 +36,13 @@ export class ShopdetailComponent implements OnInit {
     window.alert('Your product has been added to the cart!');
   }
   async ngOnInit() {
-    this.idproducts =  this.route.snapshot.params['idproducts'];
     await this.st.create();
-    this.st.set("price", this.products["price"]);
-    this.st.set("idProduct", this.products["idproducts"]);
-    this.st.set("idkategori", this.products["idcategories"]);
-    // this.st.
+    this.idproducts =  this.route.snapshot.params['idproducts'];
+    
+    
     this.detailProduct();
     // // // this.DataArray = [[this.idproducts, '2'],['3', '4']]
-    console.log(this.products);
+    
     // // console.log(this.DataArray[0][0]);
 
   }
