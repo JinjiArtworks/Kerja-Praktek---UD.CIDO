@@ -14,9 +14,10 @@ import { HomepagesComponent } from './homepages/homepages.component';
 import { ShopComponent } from './shop/shop.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CategoryComponent } from './category/category.component';
-import { ShopdetailComponent } from './shopdetail/shopdetail.component';
 import { ShopModalPageModule } from './pages/shop-modal/shop-modal.module';
 import { CatModalPageModule } from './pages2/cat-modal/cat-modal.module';
+import { OrderlistComponent } from './orderlist/orderlist.component';
+
 // service dimasukan ke provider , gunanya service ?
 
 const appRoutes: Routes = [
@@ -27,7 +28,7 @@ const appRoutes: Routes = [
   { path: 'category', component: CategoryComponent },
   { path: 'category/:idcategories', component: CategoryComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'shopdetail/:idproducts', component: ShopdetailComponent },
+  { path: 'orderlist', component: OrderlistComponent },
 
 ]; // konstanta untuk menyimpan semua path yang ada didalam web ini
 @NgModule({
@@ -38,10 +39,9 @@ const appRoutes: Routes = [
     HomepagesComponent,
     ShopComponent,
     ProfileComponent,
-    ShopdetailComponent,
-    
     CategoryComponent,
     RegisterComponent,
+    OrderlistComponent
   ],
   entryComponents: [],
   imports: [

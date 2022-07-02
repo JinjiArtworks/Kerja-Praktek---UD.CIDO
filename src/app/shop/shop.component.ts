@@ -22,20 +22,11 @@ export class ShopComponent implements OnInit {
   kosong = '';
   keyword = "";
   username = "";
-  no_order:number = 0;
-  idcategories: number = 0;
-  quantity:number = 0;
-  price:number = 0;
 
   listProduct() {
     this.sh.productList().subscribe((data) => {
       this.products = data;
     });
-  }
-
-  productConfirm() {
-    this.st.set("price", this.products["price"]);
-    this.navCtrl.navigateRoot('/cart');
   }
 
   searchProduct() {
@@ -57,8 +48,6 @@ export class ShopComponent implements OnInit {
     this.st.create();
     this.username = await this.st.get('username');   
     this.listProduct();
-
-    // this.products = this.sh.getProducts();
     this.cart = this.sh.getCart();
     this.cartItemCount = this.sh.getCartItemCount();
   }
@@ -69,15 +58,10 @@ export class ShopComponent implements OnInit {
   }
  
   async openCart() {
-    // this.animateCSS('bounceOutLeft', true);
     let modal = await this.modalCtrl.create({
       component: ShopModalPage,
       cssClass: 'shop-modal'
     });
-    // modal.onWillDismiss().then(() => {
-    //   this.fab.nativeElement.classList.remove('animated', 'bounceOutLeft')
-    //   this.animateCSS('bounceInLeft');
-    // });
     modal.present();
   }
 

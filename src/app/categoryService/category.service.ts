@@ -24,7 +24,15 @@ export class CategoryService {
     return this.http.post('http://localhost/UDCIDO/api/get_search.php', body);
     // return this.http.get('https://ubaya.fun/hmp/week12/product.php');
   }
-
+  checkout(idproduct: number, username: string, quantity:number, price:number, subtotal:number): Observable<any> {
+    let body2 = new HttpParams();
+    body2 = body2.set('username', username);
+    body2 = body2.set('idproducts', idproduct);
+    body2 = body2.set('product_quantity', quantity);
+    body2 = body2.set('product_price', price);
+    body2 = body2.set('subtotal', subtotal);
+    return this.http.post('http://localhost/UDCIDO/api/checkout.php', body2);
+  }
   getCart() {
     return this.cart;
   }
@@ -32,8 +40,9 @@ export class CategoryService {
   getCartItemCount() {
     return this.cartItemCount;
   }
+ 
   addProduct(product) {
-    console.log(product);
+    // console.log(product);
     let added = false;
     for (let p of this.cart) {
       if (p.idproducts === product.idproducts) {
@@ -48,6 +57,7 @@ export class CategoryService {
     }
     this.cartItemCount.next(this.cartItemCount.value + 1);
   }
+ 
   decreaseProduct(product) {
     for (let [index, p] of this.cart.entries()) {
       if (p.idproducts === product.idproducts) {

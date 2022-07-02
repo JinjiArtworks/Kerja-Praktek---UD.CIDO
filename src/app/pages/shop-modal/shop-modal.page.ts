@@ -16,40 +16,39 @@ export class ShopModalPage implements OnInit {
   username:string="";
   price:number = 0;
   quantity:number = 0;
-  subtotal:number = 0;
-  isiCart = [];
+  // subtotal:number = 0;
   count:number=0;
 
   async ngOnInit() {
     await this.st.create();
     this.products = this.sh.getCart();
     this.username =  await this.st.get('username');  
-    this.subtotal = this.getTotal();
+    // this.subtotal = this.getTotal();
   }
-   getProduct() {
-    // console.log(this.products.length);
-   
-    // let added = false;
-    // for (let p of this.products) {
-    //   if (p.idproducts === product.idproducts) {
-    //     // p.amount += 1;
-    //     added = true;
-    //     break;
-    //   }
-    // }
-    // if (!added) {
+    getProduct() {
       for(let i = 0; i < this.products.length; i++) {
-        console.log(this.products[i]['amount']);
+        // console.log(this.products[i]['amount']);
         this.sh.checkout(
           this.products[i]['idproducts'],
           this.username,
           this.products[i]['amount'],
           this.products[i]['price'], 
-          this.subtotal
         )
-        .subscribe((data)=>{
+        .subscribe(async (data)=>{
           if (data['result'] == 'OK') {
-            alert(data['message']);
+            let alert = await this.alertCtrl.create({
+              header: 'Thanks for your Order!',
+              message: 'We will deliver your food as soon as possible',
+              buttons: [{
+                text: 'OK',
+                handler: () => {
+                  window.location.reload();
+                }
+              }]
+            });
+            alert.present().then(() => {
+              this.modalCtrl.dismiss();
+            });
           } else {
             alert(data['message']);
           }
@@ -77,21 +76,5 @@ export class ShopModalPage implements OnInit {
   close() {
     this.modalCtrl.dismiss();
   }
-  async checkout() {
-    // Perfom PayPal or Stripe checkout process
  
-    let alert = await this.alertCtrl.create({
-      header: 'Thanks for your Order!',
-      message: 'We will deliver your food as soon as possible',
-      buttons: [{
-        text: 'OK',
-        handler: () => {
-          window.location.reload();
-        }
-      }]
-    });
-    alert.present().then(() => {
-      this.modalCtrl.dismiss();
-    });
-  }
 }

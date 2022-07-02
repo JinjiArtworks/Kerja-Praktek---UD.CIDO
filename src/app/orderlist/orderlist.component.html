@@ -1,0 +1,25 @@
+<ion-content>
+  <ion-toolbar style="text-align:center; " color="primary">
+    <ion-title>CIDO</ion-title>
+  </ion-toolbar>
+  <h5 style="text-align:center">Riwayat Pemesanan </h5>
+  <div class="container-fluid">
+    <div *ngFor="let o of orders; let i=index" class="row">
+      <div class="col-12 mt-3">
+        <div class="card">
+          <div class="card-horizontal">
+            <img class="squareImageProduct" src="{{ o.image }}" alt="Card image cap">
+            <div class="card-body">
+              <p><b style="font-size: 16px;">{{ o.product_name }}</b></p>
+              <p><b>Nomor Pesanan : {{ o.no_order }}</b></p>
+              <p>Jumlah Pesanan : <b>{{ o.product_quantity }}</b></p>
+              <p>Total Harga: {{ o.subtotal }}</p>
+              <p>Status : <b>{{ o.status }}</b></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

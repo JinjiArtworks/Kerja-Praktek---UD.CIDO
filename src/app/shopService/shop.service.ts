@@ -4,14 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
-// export interface Product { 
-//   id: number;
-//   image:string;
-//   product_name: string;
-//   product_description: string;
-//   amount: number;
-//   price: number;
-// }
 @Injectable({
   providedIn: 'root'
 })
@@ -25,11 +17,6 @@ export class ShopService {
     let body = new HttpParams();
     body = body.set('keyword', keyword);
     return this.http.post('http://localhost/UDCIDO/api/get_search.php', body);
-  }
-  shopdetail(idproducts: number): Observable<any> {
-    let body = new HttpParams();
-    body = body.set('idproducts', idproducts);
-    return this.http.post('http://localhost/UDCIDO/api/getOneProduct.php', body);
   }
   // yt lesson start
   
@@ -83,20 +70,13 @@ export class ShopService {
     }
   }
 
-  // yt lesson end
-  userList(username2: string): Observable<any> {
-    let body = new HttpParams();
-    body = body.set('username2', username2)
-    return this.http.post('http://localhost/UDCIDO/api/get_profile.php', body);
-  }
 
-  checkout(idproduct: number, username: string, quantity:number, price:number, subtotal:number): Observable<any> {
+  checkout(idproduct: number, username: string, quantity:number, price:number): Observable<any> {
     let body2 = new HttpParams();
     body2 = body2.set('username', username);
     body2 = body2.set('idproducts', idproduct);
     body2 = body2.set('product_quantity', quantity);
     body2 = body2.set('product_price', price);
-    body2 = body2.set('subtotal', subtotal);
     return this.http.post('http://localhost/UDCIDO/api/checkout.php', body2);
   }
 }

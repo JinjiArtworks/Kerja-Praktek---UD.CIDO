@@ -47,7 +47,6 @@ export class HomepagesComponent implements OnInit {
       this.categories = data;
     });
   }
-  
 
   coPage(){
     this.route.navigate(['/checkout']);
@@ -71,7 +70,6 @@ export class HomepagesComponent implements OnInit {
     this.username = await this.storage.get('username')
     this.listProduct();
     this.listCategories();
-    console.log(this.username);
 
     // console.log(this.products);
   }
