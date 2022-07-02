@@ -1,35 +1,63 @@
-<ion-content>
-  <ion-toolbar>
-    <ion-title class="ion-text-center" size="large">CIDO</ion-title>
+<ion-content fullscreen="true" slot="fixed">
+  <div class="card">
+    <div class="header">
+      <div class="avatar">
+        <img src="https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png">
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="user-meta ion-text-center">
+      <ion-item>
+        <ion-label>
+          <h4>Username</h4>
+          <h4 class="txt"> {{ username }}</h4>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <h4>Address</h4>
+          <h4 class="txt">{{ address }}</h4>
+
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <h4>Phone</h4>
+          <h4 class="txt"> {{ phone }} </h4>
+        </ion-label>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>
+<!-- <ion-content>
+  <ion-toolbar style="text-align:center" color="primary">
+    <ion-title>CIDO</ion-title>
   </ion-toolbar>
+  <img src="https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png"
+    class="avatar ">
 
   <ion-list lines=" full">
     <ion-item>
       <ion-label>
-        <ion-text>Username</ion-text>
-        <p>
-          <ion-input color="dark" value="{{ username }}" [(ngModel)]=" username" disabled="{{ disabledz }}">
-          </ion-input>
-        </p>
+        <ion-text> <b>Username</b></ion-text>
+        <ion-label color="dark" [(ngModel)]=" username" disabled="{{ disabledz }}">{{  username  }}
+        </ion-label>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
         <ion-text>Address</ion-text>
-        <p>
-          <ion-input color="dark" value="{{ address }}" [(ngModel)]=" address" disabled="{{ disabledz }}">
-          </ion-input>
-        </p>
+        <ion-input color="dark" value="{{ address }}" [(ngModel)]=" address" disabled="{{ disabledz }}">
+        </ion-input>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
         <ion-text>Phone</ion-text>
-        <p>
-          <ion-input color="dark" value="{{ phone }}" [(ngModel)]=" phone" disabled="{{ disabledz }}">
-          </ion-input>
-        </p>
+        <ion-input color="dark" value="{{ phone }}" [(ngModel)]=" phone" disabled="{{ disabledz }}">
+        </ion-input>
       </ion-label>
     </ion-item>
   </ion-list>
-</ion-content>
+</ion-content> -->

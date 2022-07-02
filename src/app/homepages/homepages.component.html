@@ -1,34 +1,29 @@
-  <ion-content *ngIf="username !=='empty'">
-    <ion-toolbar>
-      <ion-title class="ion-text-center" size="large">CIDO</ion-title>
+  <ion-content fullscreen *ngIf="username !=='empty'">
+    <ion-toolbar style="text-align:center" color="primary">
+      <ion-title>CIDO</ion-title>
     </ion-toolbar>
     <header>
-      <ion-slides class=" ion-margin-top">
-        <ion-slide *ngFor="let pr of products; let i = index">
-          <ion-card class="sliders">
-            <ion-img src='{{ pr.image }}'></ion-img>
+
+      <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide *ngFor=" let pr of products; let i=index">
+          <ion-card class="sliders mt-4 mb-4">
+            <ion-img class="squareImageSlide" src='{{ pr.imgslide }}'></ion-img>
           </ion-card>
         </ion-slide>
       </ion-slides>
-
-      <!-- <div class="container px-4 px-lg-5 my-5">
-        <div *ngFor="let pr of products; let i = index" class="text-center text-white">
-          <img src='{{ pr.image }}'>
-        </div>
-      </div> -->
     </header>
     <!-- Section-->
-    <section>
+    <ion-col>
       <div class="container">
-        <h3>Semua Kategori</h3>
+        <h3><b> Kategori</b></h3>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
           <div class="col mb-5" *ngFor="let cat of categories; let i=index">
-            <div class="card h-100">
+            <div class=" card h-100">
               <!-- Product image-->
-              <img src='{{ cat.img }}'>
+              <img class="squareImageProduct" src='{{ cat.img }}'>
 
               <div class="card-body text-center" style="color: black; ">
-                <h3 class="fw-bolder">{{ cat.category_name }}</h3>
+                <h2 style="text-transform: uppercase;" class="fw-bolder">{{ cat.category_name }}</h2>
               </div>
               <!-- Product actions-->
               <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -41,36 +36,7 @@
           </div>
         </div>
       </div>
-    </section>
-    <!-- <ion-toolbar>
-      <h3>CIDO</h3>
-    </ion-toolbar>
-
-    <ion-col *ngIf=" kosong !=='empty'">
-      <ion-slides class=" ion-margin-top">
-        <ion-slide *ngFor="let pr of products; let i = index">
-          <ion-card class="sliders">
-            <ion-img src='{{ pr.image }}'></ion-img>
-          </ion-card>
-        </ion-slide>
-      </ion-slides>
     </ion-col>
-    <div cards *ngIf="kosong !== 'empty'">
-      <h2>Kategori</h2>
-      <div class="grid-full">
-        <ion-row>
-          <ion-col *ngFor="let cat of categories; let i=index">
-            <ion-card>
-              <ion-img routerLink="/category/{{ cat.idcategories }}" src='{{ cat.img }}'></ion-img>
-              <p>{{ cat.category_name }}</p>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      </div>
-    </div>
-    <ion-col *ngIf=" kosong==='empty'">
-      <h1 class=" nothing" style="text-align: center ">
-        Maaf produk tidak tersedia
-      </h1>
-    </ion-col> 
-  </ion-content> -->
+
+
+  </ion-content>

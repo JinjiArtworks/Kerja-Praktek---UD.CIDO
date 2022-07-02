@@ -8,6 +8,6 @@ extract($_POST);
 $date   = new DateTime(); //this returns the current date time
 $order_date = $date->format('Y-m-d');
 $no_order = rand(10, 1000);
-$hasil = $checkout->insertOrder($no_order, $order_date, $username, $idproducts, $product_quantity, $product_price);
+$hasil = $checkout->insertOrder($no_order, $order_date, $username, $idproducts, $product_quantity, $product_price, $subtotal);
 
 echo json_encode($hasil);

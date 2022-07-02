@@ -13,11 +13,10 @@ import { RegisterComponent } from './register/register.component';
 import { HomepagesComponent } from './homepages/homepages.component';
 import { ShopComponent } from './shop/shop.component';
 import { ProfileComponent } from './profile/profile.component';
-import { CartComponent } from './cart/cart.component';
-import { CheckoutComponent } from './checkout/checkout.component';
 import { CategoryComponent } from './category/category.component';
 import { ShopdetailComponent } from './shopdetail/shopdetail.component';
 import { ShopModalPageModule } from './pages/shop-modal/shop-modal.module';
+import { CatModalPageModule } from './pages2/cat-modal/cat-modal.module';
 // service dimasukan ke provider , gunanya service ?
 
 const appRoutes: Routes = [
@@ -28,9 +27,6 @@ const appRoutes: Routes = [
   { path: 'category', component: CategoryComponent },
   { path: 'category/:idcategories', component: CategoryComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'cart/:idproducts', component: CartComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'checkout', component: CheckoutComponent },
   { path: 'shopdetail/:idproducts', component: ShopdetailComponent },
 
 ]; // konstanta untuk menyimpan semua path yang ada didalam web ini
@@ -42,11 +38,10 @@ const appRoutes: Routes = [
     HomepagesComponent,
     ShopComponent,
     ProfileComponent,
-    CartComponent,
-    CheckoutComponent,
+    ShopdetailComponent,
+    
     CategoryComponent,
     RegisterComponent,
-    ShopdetailComponent
   ],
   entryComponents: [],
   imports: [
@@ -57,6 +52,7 @@ const appRoutes: Routes = [
     AppRoutingModule,
     FormsModule,
     ShopModalPageModule,
+    CatModalPageModule,
     RouterModule.forRoot(appRoutes),
   ], //librari routes ditambah disini
 

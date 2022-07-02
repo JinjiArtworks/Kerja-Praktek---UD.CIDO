@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
-// export interface Product {
+// export interface Product { 
 //   id: number;
 //   image:string;
 //   product_name: string;
@@ -16,14 +16,9 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ShopService {
-  // @Output() event = new EventEmitter();
-  private cart = [];
+  cart = [];
   private cartItemCount = new BehaviorSubject(0);
 
-  // data: Product[] = this.getProducts();
-  // ];
- 
-  item: any;
   constructor(private http: HttpClient) { }
 
   searchProduct(keyword: string): Observable<any> {
@@ -38,18 +33,10 @@ export class ShopService {
   }
   // yt lesson start
   
-  // data: Product[] = [
-  //   { id: 0, name: 'Pizza Salami', price: 8.99, amount: 0 },
-  //   { id: 1, name: 'Pizza Classic', price: 5.49, amount: 0 },
-  //   { id: 2, name: 'Sliced Bread', price: 4.99, amount: 0 },
-  //   { id: 3, name: 'Salad', price: 6.99, amount: 0 }
   productList(): Observable<any> {
     return this.http.get('http://localhost/UDCIDO/api/get_products.php');
   }
   
-  // getProducts() {
-  //   return this.data;
-  // }
   getCart() {
     return this.cart;
   }
@@ -59,9 +46,10 @@ export class ShopService {
   }
  
   addProduct(product) {
+    // console.log(product);
     let added = false;
     for (let p of this.cart) {
-      if (p.id === product.id) {
+      if (p.idproducts === product.idproducts) {
         p.amount += 1;
         added = true;
         break;
@@ -76,7 +64,7 @@ export class ShopService {
  
   decreaseProduct(product) {
     for (let [index, p] of this.cart.entries()) {
-      if (p.id === product.id) {
+      if (p.idproducts === product.idproducts) {
         p.amount -= 1;
         if (p.amount == 0) {
           this.cart.splice(index, 1);
@@ -88,7 +76,7 @@ export class ShopService {
  
   removeProduct(product) {
     for (let [index, p] of this.cart.entries()) {
-      if (p.id === product.id) {
+      if (p.idproducts === product.idproducts) {
         this.cartItemCount.next(this.cartItemCount.value - p.amount);
         this.cart.splice(index, 1);
       }
@@ -100,5 +88,15 @@ export class ShopService {
     let body = new HttpParams();
     body = body.set('username2', username2)
     return this.http.post('http://localhost/UDCIDO/api/get_profile.php', body);
+  }
+
+  checkout(idproduct: number, username: string, quantity:number, price:number, subtotal:number): Observable<any> {
+    let body2 = new HttpParams();
+    body2 = body2.set('username', username);
+    body2 = body2.set('idproducts', idproduct);
+    body2 = body2.set('product_quantity', quantity);
+    body2 = body2.set('product_price', price);
+    body2 = body2.set('subtotal', subtotal);
+    return this.http.post('http://localhost/UDCIDO/api/checkout.php', body2);
   }
 }

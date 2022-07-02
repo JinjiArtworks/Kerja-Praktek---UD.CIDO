@@ -11,46 +11,23 @@ export class ProfileComponent implements OnInit {
   username:string = "";
   address:string = "";
   phone:string = "";
-  disabledz:boolean = true;
+  // disabledz:boolean = true;
   users = [];
   constructor(public ps: ProfileService,  public st:Storage) { }
   
 
   async listUser() {
     this.username = await this.st.get('username');   
-    await this.ps.userList(this.username).subscribe((data) => {
-    // this.users = data;'
-    
 
-    // console.log(data);
+    await this.ps.userList(this.username).subscribe((data) => {
     this.users = data;
-    // console.log(this.users);
     this.address = data['address'];
     this.phone = data['phone'];
-
   });
-  // console.log(this.users);
   }
 
-//   searchProduct() {
-//     this.sh.searchProduct(this.keyword).subscribe((data) => {
-//       // console.log(data[0]);
-//       if(data[0] == "empty")
-//       {
-//         this.kosong = data[0];
-//       }
-//       else if(data[0] != "empty"){
-//         this.products = data;
-//         this.kosong = data[0];
-//       }
-// });
-//   }
-
-
   async ngOnInit() {
-    
     this.username = await this.st.get('username');   
     await this.listUser();
-    
   }
 }

@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 import { CategoryService } from '../categoryService/category.service';
-import { CartService } from '../cartService/cart.service';
 import { ShopService } from '../shopService/shop.service';
 import { Product } from '../product.model';
 
@@ -13,7 +12,7 @@ import { Product } from '../product.model';
   styleUrls: ['./shopdetail.component.scss'],
 })
 export class ShopdetailComponent implements OnInit {
-  constructor(public cs: CategoryService, public ss: ShopService, private route:ActivatedRoute, public st: Storage, public cart:CartService) { }
+  constructor(public cs: CategoryService, public ss: ShopService, private route:ActivatedRoute, public st: Storage) { }
   idproducts = 0;
   products = [];
   kosong = '';

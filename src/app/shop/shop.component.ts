@@ -62,8 +62,9 @@ export class ShopComponent implements OnInit {
     this.cart = this.sh.getCart();
     this.cartItemCount = this.sh.getCartItemCount();
   }
-  addToCart(product) {
-    this.sh.addProduct(product);
+  addToCart(product2) {
+    this.sh.addProduct(product2);
+    // console.log(product2);
     // this.animateCSS('tada');
   }
  

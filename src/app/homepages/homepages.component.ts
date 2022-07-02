@@ -4,21 +4,39 @@ import { Storage } from '@ionic/storage';
 
 
 import { HomeService } from '../HomeService/home.service'
+import { ShopService } from '../shopService/shop.service';
 @Component({
   selector: 'app-homepages',
   templateUrl: './homepages.component.html',
   styleUrls: ['./homepages.component.scss'],
 })
 export class HomepagesComponent implements OnInit {
-  constructor(public hm: HomeService, private route: Router,private storage: Storage) { }
+  constructor(public hm: HomeService, private route: Router,private storage: Storage, public sh: ShopService) { }
   products = [];
   categories = [];
   kosong = '';
   username = '';
-  // public tes2: any = '';
-  
-
   keyword = "";
+  fill = '';
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400
+  };
+  searchProduct() {
+    this.sh.searchProduct(this.keyword).subscribe((data) => {
+      // console.log(data[0]);
+      console.log(data);
+      if(data[0] == "empty")
+      {
+        this.kosong = data[0];
+      }
+      else if(data[0] != "empty"){
+        this.products = data;
+        console.log(data);
+        // this.kosong = data[0];
+      }
+    });
+  }
   async listProduct() {
     this.hm.productList().subscribe((data) => {
       this.products = data;
@@ -29,26 +47,8 @@ export class HomepagesComponent implements OnInit {
       this.categories = data;
     });
   }
+  
 
-  searchProduct() {
-    this.hm.searchProduct(this.keyword).subscribe((data) => {
-      // console.log(data[0]);
-      if(data[0] == "empty")
-      {
-        this.kosong = data[0];
-        // console.log("KOSONG");
-        // console.log(this.kosong);
-      }
-      else if(data[0] != "empty"){
-        this.products = data;
-        this.categories = data;
-        this.kosong = data[0];
-        // console.log(data);
-        // console.log(this.products);
-      }
-      
-    });
-  }
   coPage(){
     this.route.navigate(['/checkout']);
   }

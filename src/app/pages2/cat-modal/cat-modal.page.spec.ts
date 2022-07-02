@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { CartComponent } from './cart.component';
+import { CatModalPage } from './cat-modal.page';
 
-describe('CartComponent', () => {
-  let component: CartComponent;
-  let fixture: ComponentFixture<CartComponent>;
+describe('CatModalPage', () => {
+  let component: CatModalPage;
+  let fixture: ComponentFixture<CatModalPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CartComponent ],
+      declarations: [ CatModalPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CartComponent);
+    fixture = TestBed.createComponent(CatModalPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

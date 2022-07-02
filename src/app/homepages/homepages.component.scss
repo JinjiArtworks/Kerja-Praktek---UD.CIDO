@@ -1,34 +1,9 @@
-ion-title {
-    font-weight: 600;
-}
-h2{
-    margin-left:15px;
-}
 .sliders {
-    height: 200px;
+    height: 300px;
     width: 100%;
-    box-shadow: none;
     border-radius: 5px;
-    
-    img {
-        object-fit: cover;
-        width: 100%;
-        transform: scale(1.1, 1.1) rotate(1deg);
-        transition: 600ms all ease-in-out;
-    }
 }
-// ion-card{
-//     height: 160px;
-//     box-shadow: none;
-//     border-radius: 12px;
-// }
 
-.box{
-    height: 160px;
-    box-shadow: none;
-    border-radius: 12px;
-    
-}
 .swiper-slide-active {
     transform: scale(1.05, 1.05);
 
@@ -43,32 +18,21 @@ h2{
     transition: 400ms all ease-in-out;
 }
 
-.gambar {
-    width: 45%;
-    float: left;
-    
-}
+.squareImageSlide {
+    border-radius: 4px;		/* edge rounding of border */
+    width: 100%;				/* width of image (px or % or auto) */
+    height: 300px;				/* height of image (px or % or auto) */
+  }
 
-.detail {
-    width: 45%;
-    float: right;
-}
-
-strong{
-    font-size: 20px;
-}
-
-[cards] {
-    .grid-full ion-col {
-        flex: 0 0 50%;
-        max-width: 50%;
-        padding: 5px 0;
-    }
-    .row {
-        padding: 0;
-    }
-    .col {
-        padding: 5px 0;
-    }
-    
-}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+  }
+  .squareImageProduct {
+    border-radius: 4px;		/* edge rounding of border */
+    width: 100%;				/* width of image (px or % or auto) */
+    height: 200px;				/* height of image (px or % or auto) */
+  }
